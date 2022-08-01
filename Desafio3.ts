@@ -2,19 +2,16 @@
 
 let botaoAtualizar = document.getElementById('atualizar-saldo') as HTMLButtonElement;
 let botaoLimpar = document.getElementById('limpar-saldo') as HTMLButtonElement;
-let soma = document.getElementById('soma') as HTMLElement;
+let soma = document.getElementById('soma') as HTMLInputElement;
 let campoSaldo = document.getElementById('campo-saldo') as HTMLSpanElement;
 
-function convertType(valueString: number | string) { 
-    if (typeof valueString === 'number') { 
-        return valueString.toString();
-    } 
-    return Number(valueString);
-}
-campoSaldo.innerHTML = convertType(0);
+campoSaldo.innerHTML = '0';
 
-function somarAoSaldo(soma: number ) {  
-    campoSaldo.innerHTML += convertType(soma);
+function somarAoSaldo() {
+    if (typeof soma.value === 'number'){
+        let resultado = Number(campoSaldo.innerHTML) + Number(soma.value);
+        campoSaldo.innerHTML = resultado.toString();
+    } 
 }
 
 function limparSaldo() {
@@ -30,8 +27,5 @@ botaoLimpar.addEventListener('click', function () {
 });
 
 /**
-    <h4>Valor a ser adicionado: <input id="soma"> </h4>
-    <button id="atualizar-saldo">Atualizar saldo</button>
-    <button id="limpar-saldo">Limpar seu saldo</button>
-    <h1>"Seu saldo é: " <span id="campo-saldo"></span></h1>
+    
  */
